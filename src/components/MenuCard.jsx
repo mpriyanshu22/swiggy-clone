@@ -1,6 +1,5 @@
 import { useState } from "react";
 import ItemCard from "./ItemCard"; 
-
 import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosArrowDropup } from "react-icons/io";
 function MenuCard({menuItems,foodSelected}){
