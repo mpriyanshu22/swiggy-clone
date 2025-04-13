@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { addItems, IncrementItems, DecrementItems } from "../Stored/CartSlicer";
 import { useDispatch, useSelector } from "react-redux";
+import R from '../assets/R.jpg'
 
 function SearchFood() {
   const { id } = useParams();
@@ -54,20 +55,20 @@ function SearchFood() {
             return (
               <div
                 key={index}
-                className="bg-white p-4 rounded-2xl shadow-md flex items-center justify-between gap-6 h-50 w-200 ml-10"
+                className="bg-white p-4 rounded-2xl shadow-md flex items-center justify-between gap-6 h-50 w-220 ml-2"
               >
                 {/* Left content */}
-                <div className="flex-1">
+                <div className="flex-4">
                   <h2 className="text-xl font-semibold">{item.name}</h2>
                   <p className="text-gray-600 text-lg mt-1">₹{price}</p>
                 </div>
 
                 {/* Right - Image with overlay cart controls */}
-                <div className="relative">
+                <div className="relative flex-1">
                   {item.imageId && (
                     <img
-                      src={`https://media-assets.swiggy.com/swiggy/image/upload/${item.imageId}`}
-                      alt={item.name}
+                      src={`https://media-assets.swiggy.com/swiggy/image/upload/${item.imageId}` ||`${R}`}
+                      alt={item?.name}
                       className="w-40 h-35 object-cover rounded-xl shadow-md"
                     />
                   )}
