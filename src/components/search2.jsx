@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { addItems, IncrementItems, DecrementItems } from "../Stored/CartSlicer";
 import { useDispatch, useSelector } from "react-redux";
 
-function search2() {
+function Search2() {
   const { id } = useParams();
   const [food, setFood] = useState("");
   const [foodItems, setFoodItems] = useState([]);
@@ -32,22 +32,21 @@ function search2() {
     fetchData();
   }, [id]);
 
-  // Filter items based on input and veg match
   const filteredItems = foodItems.filter((item) =>
-  item?.name?.toLowerCase().includes(food.toLowerCase())
+    item?.name?.toLowerCase().includes(food.toLowerCase())
   );
 
   return (
-    <div className="w-[80%] mx-auto mt-20">
+    <div className="max-w-5xl mx-auto mt-24 px-4 sm:px-6">
       <input
         type="text"
         placeholder="Search for food"
-        className="w-full pl-10 py-4 bg-gray-200 rounded-2xl text-xl"
+        className="w-full pl-10 py-3 sm:py-4 bg-gray-200 rounded-2xl text-base sm:text-xl"
         onChange={(e) => setFood(e.target.value)}
         value={food}
       />
 
-      <div className="mt-10 space-y-4">
+      <div className="mt-10 space-y-6">
         {filteredItems.length > 0 ? (
           filteredItems.map((item) => {
             const cartItem = cartItems.find((cart) => cart.id === item.id);
@@ -56,23 +55,23 @@ function search2() {
             return (
               <div
                 key={item.id}
-                className="p-4 bg-white shadow-md rounded-xl flex justify-between items-start"
+                className="p-4 bg-white shadow-md rounded-xl flex flex-col sm:flex-row justify-between items-center sm:items-start"
               >
-                {/* Left: Item info */}
-                <div className="flex-1 pr-4">
-                  <h2 className="text-lg font-semibold">{item.name}</h2>
+                {/* Left: Info */}
+                <div className="flex-1 text-center sm:text-left mb-4 sm:mb-0 sm:pr-6">
+                  <h2 className="text-lg sm:text-xl font-semibold">{item.name}</h2>
                   <p className="text-gray-500">
                     ₹{(item.price ?? item.defaultPrice) / 100}
                   </p>
                 </div>
 
-                {/* Right: Image & Add/Counter */}
-                <div className="flex flex-col items-center gap-2 w-24">
+                {/* Right: Image & Controls */}
+                <div className="flex flex-col items-center gap-2 w-20 sm:w-24">
                   {item.imageId && (
                     <img
                       src={`https://media-assets.swiggy.com/swiggy/image/upload/${item.imageId}`}
                       alt={item.name}
-                      className="w-20 h-20 rounded-lg object-cover"
+                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg object-cover"
                     />
                   )}
 
@@ -104,4 +103,4 @@ function search2() {
   );
 }
 
-export default search2;
+export default Search2;
