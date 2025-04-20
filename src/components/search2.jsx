@@ -13,7 +13,7 @@ function search2() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const proxybar = "https://cors-anywhere.herokuapp.com/";
+        const proxybar = "https://cors-anywhere-m1oe.onrender.com/";
         const swiggyApi = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.25050&lng=77.40650&restaurantId=${id}`;
         const response = await fetch(proxybar + swiggyApi);
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
