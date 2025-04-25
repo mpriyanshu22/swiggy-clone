@@ -20,8 +20,8 @@ function SearchFood() {
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const data = await response.json();
         const tempdata = data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-        const foodCards = tempdata.filter(info => info?.card?.card?.itemCards);
-        const items = foodCards.flatMap(card =>
+        const foodCards = tempdata?.filter(info => info?.card?.card?.itemCards);
+        const items = foodCards?.flatMap(card =>
           card.card.card.itemCards.map(item => item.card.info)
         );
         setFoodItems(items);
@@ -32,7 +32,7 @@ function SearchFood() {
     fetchData();
   }, [id]);
 
-  const filteredItems = foodItems.filter(item =>
+  const filteredItems = foodItems?.filter(item =>
     item.name.toLowerCase().includes(food.toLowerCase())
   );
 
@@ -47,7 +47,7 @@ function SearchFood() {
       />
 
       <div className="mt-10 space-y-6">
-        {filteredItems.length > 0 ? (
+        {filteredItems?.length > 0 ? (
           filteredItems.map((item, index) => {
             const cartItem = cartItems.find(ci => ci.id === item.id);
             const price = (item.price ?? item.defaultPrice) / 100;
