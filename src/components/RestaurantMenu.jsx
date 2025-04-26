@@ -19,7 +19,9 @@ function RestaurantMenu() {
         if (!response.ok) throw new Error(`Status: ${response.status}`);
 
         const data = await response.json();
-        const tempdata = data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
+        // console.log(data);
+        
+        const tempdata = data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards ||data?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards|| [];
         const filtered = tempdata.filter((info) => "title" in info?.card?.card);
         setRestData(filtered);
       } catch (err) {

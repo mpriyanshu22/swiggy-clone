@@ -19,7 +19,8 @@ function SearchFood() {
         const response = await fetch(proxybar + swiggyApi);
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const data = await response.json();
-        const tempdata = data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+        
+        const tempdata = data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards||data?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards||[];
         const foodCards = tempdata?.filter(info => info?.card?.card?.itemCards);
         const items = foodCards?.flatMap(card =>
           card.card.card.itemCards.map(item => item.card.info)
